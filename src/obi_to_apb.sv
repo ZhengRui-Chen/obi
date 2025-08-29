@@ -6,6 +6,19 @@
 
 `include "common_cells/assertions.svh"
 
+// Define a custom ASSERT_INIT macro that accepts a message parameter
+// This overrides the default macro to support the third parameter
+`ifdef INC_ASSERT
+  `undef ASSERT_INIT
+  `define ASSERT_INIT(__name, __prop, __msg) \
+    initial begin \
+      __name: assert (__prop) \
+        else $error(__msg); \
+    end
+`else
+  `define ASSERT_INIT(__name, __prop, __msg)
+`endif
+
 /// An OBI to APB adapter.
 module obi_to_apb #(
   /// The configuration of the subordinate port (input port).
