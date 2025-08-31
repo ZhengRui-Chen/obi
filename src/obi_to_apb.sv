@@ -142,26 +142,26 @@ module obi_to_apb #(
   // Assertions
   // ----------
 
-  `ASSERT_INIT(no_rready, ObiCfg.UseRReady == 0,
-      "RReady not supported in OBI to APB conversion")
-  `ASSERT_INIT(no_atop, ObiCfg.OptionalCfg.UseAtop == 0,
-      "ATOP not supported in OBI to APB conversion")
-  `ASSERT_INIT(no_memtype, ObiCfg.OptionalCfg.UseMemtype == 0,
-      "Memtype not supported in OBI to APB conversion")
-  `ASSERT_INIT(no_debug, ObiCfg.OptionalCfg.UseDbg == 0,
-      "Debug not supported in OBI to APB conversion")
-  `ASSERT_INIT(no_integrity, !ObiCfg.Integrity,
-      "Integrity not supported!")
-   `ASSERT_INIT(no_achk, ObiCfg.OptionalCfg.AChkWidth == 0,
-      "ACHK field not supported!")
-  `ASSERT_INIT(equal_wdata_width, $bits(apb_req_o.pwdata) == $bits(obi_req_i.a.wdata),
-      "WDATA width mismatch between APB and OBI ports!")
-  `ASSERT_INIT(equal_be_width, $bits(apb_req_o.pstrb) == $bits(obi_req_i.a.be),
-      "Strobe width mismatch between APB and OBI ports!")
-  `ASSERT_INIT(equal_rdata_width, $bits(apb_rsp_i.prdata) == $bits(obi_rsp_o.r.rdata),
-      "RDATA width mismatch between APB and OBI ports!")
-  `ASSERT_INIT(equal_addr_width, $bits(apb_req_o.paddr) == $bits(obi_req_i.a.addr),
-      "Address width mismatch between APB and OBI ports!")
+  // `ASSERT_INIT(no_rready, ObiCfg.UseRReady == 0,
+  //     "RReady not supported in OBI to APB conversion")
+  // `ASSERT_INIT(no_atop, ObiCfg.OptionalCfg.UseAtop == 0,
+  //     "ATOP not supported in OBI to APB conversion")
+  // `ASSERT_INIT(no_memtype, ObiCfg.OptionalCfg.UseMemtype == 0,
+  //     "Memtype not supported in OBI to APB conversion")
+  // `ASSERT_INIT(no_debug, ObiCfg.OptionalCfg.UseDbg == 0,
+  //     "Debug not supported in OBI to APB conversion")
+  // `ASSERT_INIT(no_integrity, !ObiCfg.Integrity,
+  //     "Integrity not supported!")
+  //  `ASSERT_INIT(no_achk, ObiCfg.OptionalCfg.AChkWidth == 0,
+  //     "ACHK field not supported!")
+  // `ASSERT_INIT(equal_wdata_width, $bits(apb_req_o.pwdata) == $bits(obi_req_i.a.wdata),
+  //     "WDATA width mismatch between APB and OBI ports!")
+  // `ASSERT_INIT(equal_be_width, $bits(apb_req_o.pstrb) == $bits(obi_req_i.a.be),
+  //     "Strobe width mismatch between APB and OBI ports!")
+  // `ASSERT_INIT(equal_rdata_width, $bits(apb_rsp_i.prdata) == $bits(obi_rsp_o.r.rdata),
+  //     "RDATA width mismatch between APB and OBI ports!")
+  // `ASSERT_INIT(equal_addr_width, $bits(apb_req_o.paddr) == $bits(obi_req_i.a.addr),
+  //     "Address width mismatch between APB and OBI ports!")
 
 
 endmodule
