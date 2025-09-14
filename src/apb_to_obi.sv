@@ -133,27 +133,20 @@ module apb_to_obi #(
     endcase
   end
 
-  `FF(obi_phase_q, obi_phase_d, ADDR, clk_i, rst_ni)
+  `FFARN(obi_phase_q, obi_phase_d, ADDR, clk_i, rst_ni)
 
   // ----------
   // Assertions
   // ----------
 
 `ifndef OBI_ASSERTS_OFF
-  `ASSERT(penable, obi_phase_q == RESP |-> apb_req_i.penable, clk_i, !rst_ni,
-      "APB PENABLE must be asserted during OBI RESP phase!")
-  `ASSERT_INIT(no_integrity, !ObiCfg.Integrity,
-      "Integrity not supported!")
-  `ASSERT_INIT(no_achk, ObiCfg.OptionalCfg.AChkWidth == 0,
-      "ACHK field not supported!")
-  `ASSERT_INIT(equal_wdata_width, $bits(apb_req_i.pwdata) == $bits(obi_req_o.a.wdata),
-      "WDATA width mismatch between APB and OBI ports!")
-  `ASSERT_INIT(equal_be_width, $bits(apb_req_i.pstrb) == $bits(obi_req_o.a.be),
-      "Strobe width mismatch between APB and OBI ports!")
-  `ASSERT_INIT(equal_rdata_width, $bits(apb_rsp_o.prdata) == $bits(obi_rsp_i.r.rdata),
-      "RDATA width mismatch between APB and OBI ports!")
-  `ASSERT_INIT(equal_addr_width, $bits(apb_req_i.paddr) == $bits(obi_req_o.a.addr),
-      "Address width mismatch between APB and OBI ports!")
+  `ASSERT(penable, obi_phase_q == RESP |-> apb_req_i.penable)
+  `ASSERT_INIT(no_integrity, !ObiCfg.Integrity)
+  `ASSERT_INIT(no_achk, ObiCfg.OptionalCfg.AChkWidth == 0)
+  `ASSERT_INIT(equal_wdata_width, $bits(apb_req_i.pwdata) == $bits(obi_req_o.a.wdata))
+  `ASSERT_INIT(equal_be_width, $bits(apb_req_i.pstrb) == $bits(obi_req_o.a.be))
+  `ASSERT_INIT(equal_rdata_width, $bits(apb_rsp_o.prdata) == $bits(obi_rsp_i.r.rdata))
+  `ASSERT_INIT(equal_addr_width, $bits(apb_req_i.paddr) == $bits(obi_req_o.a.addr))
 `endif
 
 endmodule
